@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" href="/static/images/557a98aa-8841-4813-8268-91106f36f801_removalai_preview.png">
+</head>
+<style>
+    body {
+        background-image: url(/static/images/cloud.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        font-family: 'Cal Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .div1, .div2 {
+        text-align: center;
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 600px;
+        background:linear-gradient(90deg, rgba(255, 3, 100, 0.278), rgba(218, 74, 129, 0.278)) ;
+        backdrop-filter: blur(3px);
+        border-radius: 10px;
+        box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.702);
+    }
+
+    .div1 h1, .div2 h1 {
+        font-size: 2rem;
+        color: hsl(207, 97%, 51%);
+        text-shadow: 2px 2px 1px hsl(0, 14%, 1%);
+    }
+
+    .div2 h2 {
+        color: hsl(207, 97%, 51%);
+        text-shadow: 2px 2px 1px hsl(0, 14%, 1%);
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        width: 80%;
+        border: 1px solid hsl(322, 76%, 6%);
+        border-radius: 7px;
+        font-family: Cal Sans;
+        font-size: 17px;
+        transition: 0.3s ease;
+    }
+
+    input[type="text"]:hover{
+        background-color: hsl(339, 71%, 71%);
+        transition: 0.3s ease;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: hsl(339, 83%, 60%);
+        color: hsl(0, 0%, 100%);
+        border: 1px groove hsl(39, 77%, 83%);
+        border-radius: 7px;
+        font-family: Cal Sans;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        
+    }
+
+    input[type="submit"]:hover {
+        background-color: hsl(339, 88%, 52%);
+        transform: scale(1.1);
+        box-shadow: 2px 2px 1px hsla(0, 0%, 0%, 0.683);
+        border-radius: 2px;
+        transition: 0.3s ease;
+        border: 1px groove hsl(337, 76%, 56%, 0.669);
+    }
+
+    .del{
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        background-color: hsl(0, 76%, 56%);
+        color: hsl(0, 0%, 100%);
+        border: 1px groove hsl(39, 77%, 83%);
+        border-radius: 7px;
+        font-size: 20px;
+        font-family: Cal Sans;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .del:hover{
+        background-color: hsl(0, 83%, 50%);
+        transition: 0.3s ease;
+        transform: scale(1.1);
+        box-shadow: 2px 2px 1px hsla(0, 0%, 0%, 0.683);
+        border-radius: 2px;
+        border: 1px groove hsl(337, 76%, 56%, 0.669);
+    }
+
+</style>
+<body>
+    
+    <div class="div1">
+        <h1>Enter Text</h1>
+        <form action="{{ url_for('index') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.name.label }}<br>
+                {{ form.name(size=32) }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+
+    <div class="div2">
+        <h1>Added Text</h1>
+            
+            {% for item in items %}
+            <h2>{{ item.name }}</h2>
+            {% endfor %}
+            
+    </div>
+
+    <form action="{{ url_for('delete_all') }}" method="POST" style="text-align: center; margin-top: 20px;">
+        <button type="submit" class="del">
+            Delete All Items
+        </button>
+    </form>
+
+</body>
+</html>
